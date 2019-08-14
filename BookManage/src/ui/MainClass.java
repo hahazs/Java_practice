@@ -114,15 +114,65 @@ public class MainClass {
                 break;
             default:
                 System.out.println("输入非法");
-                System.out.println("请选择删除方式：1-序号/r/n2-书名");
+                System.out.println("请选择删除方式：1-序号 2-书名 3-返回主菜单");
         }
         printMenu();
     }
     void changeBook(){
-        System.out.println("change");
+        System.out.println("请输入你要以何种方式对图书修改：1-序号  2-书名 3-返回主菜单");
+        Scanner scanner = new Scanner(System.in);
+        int choice_change = scanner.nextInt();
+        switch(choice_change){
+            case 1:
+                System.out.println("请输入图书的书号：");
+                int id_book = scanner.nextInt();
+                id_book = orfind(id_book);
+                if(id_book != -1){
+                    System.out.println("原书名为：" + booklist[id_book].getBookname()+"请输入图书新名称：");
+                    String new_bookname = scanner.next();
+                    System.out.println("请输入图书新作者：");
+                    String new_bookauthor = scanner.next();
+                    System.out.println("请输入图书新价格：");
+                    float new_bookprice = scanner.nextFloat();
+                    booklist[id_book].setBook(new_bookname,new_bookauthor,new_bookprice);
+                    System.out.println("修改成功");
+                    printAllBook();
+                }
+                else{
+                    System.out.println("输入错误");
+                }
+                break;
+            case 2:
+                System.out.println("请输入图书的书名：");
+                String name_book = scanner.next();
+                int id = namefind(name_book);
+                if(id != -1){
+                    System.out.println("原书名为：" + booklist[id].getBookname()+"请输入图书新名称：");
+                    String new_bookname = scanner.next();
+                    System.out.println("请输入图书新作者：");
+                    String new_bookauthor = scanner.next();
+                    System.out.println("请输入图书新价格：");
+                    float new_bookprice = scanner.nextFloat();
+                    booklist[id].setBook(new_bookname,new_bookauthor,new_bookprice);
+                    System.out.println("修改成功");
+                    printAllBook();
+                }
+                else{
+                    System.out.println("输入错误");
+                }
+                break;
+            case 3:
+                break;
+                default:
+                    System.out.println("输入非法");
+                    System.out.println("请输入你要以何种方式对图书修改：1-序号  2-书名 3-返回主菜单");
+        }
+        printMenu();
     }
     void findBook(){
-        System.out.println("find");
+        System.out.println("请输入想要以何种方式查找图书：1-序号 2-书名 3-返回主菜单");
+        Scanner scanner = new Scanner(System.in);
+
     }
     void printAllBook(){
         System.out.println("当前图书有:");

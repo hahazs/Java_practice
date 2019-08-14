@@ -23,4 +23,11 @@ public class Book {
     public float getPrice() {
         return price;
     }
+
+    public void setBook(String bookname,String author,float price) {
+        this.bookname = bookname;
+        this.author = author;
+        this.price = price;
+    }
+
 }
