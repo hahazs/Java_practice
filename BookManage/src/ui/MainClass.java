@@ -172,7 +172,39 @@ public class MainClass {
     void findBook(){
         System.out.println("请输入想要以何种方式查找图书：1-序号 2-书名 3-返回主菜单");
         Scanner scanner = new Scanner(System.in);
-
+        int find_choice = scanner.nextInt();
+        switch (find_choice){
+            case 1:
+                System.out.println("请输入序号：");
+                int id = scanner.nextInt();
+                id = orfind(id);
+                if (id != -1){
+                    System.out.println("查找完成");
+                    System.out.println("当前书籍的名称为：" + booklist[id].getBookname() + "当前书籍的作者为：" + booklist[id].getAuthor() + "当前书籍的价格为：" + booklist[id].getPrice());
+                }
+                else {
+                    System.out.println("输入错误");
+                }
+                break;
+            case 2:
+                System.out.println("请输入书名：");
+                String  find_bookname = scanner.next();
+                int idname = namefind(find_bookname);
+                if(idname != -1){
+                    System.out.println("查找完成");
+                    System.out.println("当前书籍的名称为：" + booklist[idname].getBookname() + "当前书籍的作者为：" + booklist[idname].getAuthor() + "当前书籍的价格为：" + booklist[idname].getPrice());
+                }
+                else {
+                    System.out.println("输入错误");
+                }
+                break;
+            case 3:
+                break;
+                default:
+                    System.out.println("输入非法");
+                    System.out.println("请输入想要以何种方式查找图书：1-序号 2-书名 3-返回主菜单");
+        }
+        printMenu();
     }
     void printAllBook(){
         System.out.println("当前图书有:");
