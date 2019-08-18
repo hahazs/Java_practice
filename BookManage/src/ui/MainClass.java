@@ -1,6 +1,7 @@
 package ui;
 
 import model.Book;
+import tool.IO;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,18 +11,22 @@ public class MainClass {
     private static final int size = 10;
     //新建一个Book数组
     Book[] booklist = new Book[size];*/
-    ArrayList booklist = new ArrayList();
+    public ArrayList booklist = new ArrayList();
     //新建一个整数计数
-    int count = 0;
+    public int count = 0;
 
     public MainClass(){
         Scanner scanner = new Scanner(System.in);
+        IO io = new IO();
+        io.load(this);
+
         printMenu();
         while(true){
             //读取用户输入
             int choice = scanner.nextInt();
             if(choice == 5)
             {
+                io.save(this);
                 System.out.println("Exit Successfully");
                 System.exit(0);
             }
