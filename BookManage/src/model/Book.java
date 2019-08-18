@@ -24,10 +24,11 @@ public class Book {
         return price;
     }
 
-    public void setBook(String bookname,String author,float price) {
+    public boolean setBook(String bookname, String author, float price) {
         this.bookname = bookname;
         this.author = author;
         this.price = price;
+        return true;
     }
 
 }

@@ -1,12 +1,13 @@
 package tool;
 
 import model.Book;
+import model.BookList;
 import ui.MainClass;
 
 import java.io.*;
 
 public class IO {
-    public void load(MainClass mainClass) {
+    public void load() {
         try {
             String filename = "D:\\Project\\Git_Project\\Java_practice\\BookManage\\book.txt";
             File file = new File(filename);
@@ -18,8 +19,8 @@ public class IO {
                 String pricestr = temp.split(",")[2];
                 float price = Float.parseFloat(pricestr);
                 Book book = new Book(bookname, author, price);
-                mainClass.booklist.add(book);
-                mainClass.count++;
+                BookList.booklist.add(book);
+/*                mainClass.count++;*/
             }
             bufferedReader.close();
         } catch (FileNotFoundException e) {
@@ -30,11 +31,11 @@ public class IO {
             e.printStackTrace();
         }
     }
-    public void save(MainClass mainClass){
+    public void save(){
         String filename = "D:\\Project\\Git_Project\\Java_practice\\BookManage\\book.txt";
         String allbook="";
-        for(int i = 0;i < mainClass.booklist.size();i++){
-            Book book = (Book) mainClass.booklist.get(i);
+        for(int i = 0;i < BookList.booklist.size();i++){
+            Book book = (Book) BookList.booklist.get(i);
             String temp = book.getBookname() + "," + book.getAuthor() + "," + book.getPrice() + "\r\n";
             allbook += temp;
         }
