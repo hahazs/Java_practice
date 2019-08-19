@@ -24,11 +24,23 @@ public class Book {
         return price;
     }
 
-    public boolean setBook(String bookname, String author, float price) {
+    public void setBookname(String bookname) {
+        this.bookname = bookname;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    /*    public boolean setBook(String bookname, String author, float price) {
         this.bookname = bookname;
         this.author = author;
         this.price = price;
         return true;
-    }
+    }*/
 
 }

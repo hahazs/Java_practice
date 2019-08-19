@@ -1,8 +1,6 @@
 package tool;
 
 import model.Book;
-import model.BookList;
-import ui.MainClass;
 
 import java.io.*;
 
