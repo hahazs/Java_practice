@@ -49,6 +49,7 @@ public class Operator {
            stmt = conn.createStatement();
            String sql = "insert into book(bookname,author,price) values('"+bookname+"','"+author+"',"+price+")";
            stmt.execute(sql);
+           return true;
        } catch (SQLException e) {
            e.printStackTrace();
            return false;
@@ -117,7 +118,7 @@ public class Operator {
             database.close(conn,stmt);
         }
     }
-    public void findBook(int id,String bookname,String author,String dimname,float minprice,float maxprice) throws SQLException {
+    public void findBook(int id,String bookname,String author,String dimname,float minprice,float maxprice){
         /*Book book = (Book) BookList.booklist.get(id);
         System.out.println("查找成功，您查找到的书为第"+(id+1)+"本书！"+"书名为："+book.getBookname()+" 作者："+book.getAuthor()+" 单价："+book.getPrice()+"元/本");
     */
@@ -188,7 +189,42 @@ public class Operator {
             Book book = (Book) BookList.booklist.get(i);
             System.out.println("第" + (i + 1) + "本书名：" + book.getBookname() + " 作者：" + book.getAuthor() + " 单价：" + book.getPrice() + "元/本");
         }*/
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = database.getConnection();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select id,bookname,author,price from book");
+            if (rs.next()){
+                do {
+                    System.out.println("编号："+rs.getInt("id")+" 书名："+rs.getString("bookname")+",作者："+rs.getString("author")+",价格："+rs.getFloat("price"));
+                }while (rs.next());
+            }
+            else {
+                System.out.println("图书库为空，请添加图书！");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            database.close(conn, stmt, rs);
+        }
+    }
 
+    public boolean clearBook(){
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = database.getConnection();
+            stmt = conn.createStatement();
+            String sql = "truncate table book";
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            database.close(conn, stmt);
+        }
     }
 
 }
