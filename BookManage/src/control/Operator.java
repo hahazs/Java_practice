@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Operator {
+    public static int clearKey = 12345678;
     public ArrayList<Book> getBookList(){
         ArrayList<Book> booklist = new ArrayList<Book>();
         Connection conn = null;
@@ -24,7 +25,8 @@ public class Operator {
                 String bookname = rs.getString("bookname");
                 String author = rs.getString("author");
                 float price = rs.getFloat("price");
-                Book book = new Book(bookname,author,price);
+                int ID = rs.getInt("id");
+                Book book = new Book(ID,bookname,author,price);
                 booklist.add(book);
             }
         } catch (SQLException e) {
@@ -118,10 +120,11 @@ public class Operator {
             database.close(conn,stmt);
         }
     }
-    public void findBook(int id,String bookname,String author,String dimname,float minprice,float maxprice){
+    public ArrayList<Book> findBook(int id,String bookname,String author,String dimname,float minprice,float maxprice){
         /*Book book = (Book) BookList.booklist.get(id);
         System.out.println("查找成功，您查找到的书为第"+(id+1)+"本书！"+"书名为："+book.getBookname()+" 作者："+book.getAuthor()+" 单价："+book.getPrice()+"元/本");
     */
+        ArrayList<Book> booklist = new ArrayList<Book>();
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -149,14 +152,23 @@ public class Operator {
                 sql="";
             }
             rs = stmt.executeQuery(sql);
-            if (rs.next()){
-                System.out.println("未找到您想要的图书！");
+            while(rs.next()){
+                String bookName = rs.getString("bookname");
+                String Author = rs.getString("author");
+                float Price = rs.getFloat("price");
+                int ID = rs.getInt("id");
+                Book book = new Book(ID,bookName,Author,Price);
+                booklist.add(book);
             }
+/*            if (rs.next()){
+                System.out.println("未找到您想要的图书！");
+            }*/
         } catch (SQLException e){
             e.printStackTrace();
         } finally {
             database.close(conn,stmt,rs);
         }
+        return booklist;
     }
 /*    public int orderFind(int number){
         if(number <= BookList.booklist.size()){
@@ -184,11 +196,12 @@ public class Operator {
         return id;
     }*/
 
-    public void printAllBook() {
+    public ArrayList<Book> printAllBook() {
 /*        for (int i = 0; i < BookList.booklist.size(); i++) {
             Book book = (Book) BookList.booklist.get(i);
             System.out.println("第" + (i + 1) + "本书名：" + book.getBookname() + " 作者：" + book.getAuthor() + " 单价：" + book.getPrice() + "元/本");
         }*/
+        ArrayList<Book> booklist = new ArrayList<Book>();
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -196,19 +209,29 @@ public class Operator {
             conn = database.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select id,bookname,author,price from book");
-            if (rs.next()){
+            while(rs.next()){//如果对象中有数据，就会循环打印出来
+                String bookName = rs.getString("bookname");
+                String Author = rs.getString("author");
+                float Price = rs.getFloat("price");
+                int ID = rs.getInt("id");
+                Book book = new Book(ID,bookName,Author,Price);
+                booklist.add(book);
+                }
+
+ /*           if (rs.next()){
                 do {
                     System.out.println("编号："+rs.getInt("id")+" 书名："+rs.getString("bookname")+",作者："+rs.getString("author")+",价格："+rs.getFloat("price"));
                 }while (rs.next());
             }
             else {
                 System.out.println("图书库为空，请添加图书！");
-            }
+            }*/
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             database.close(conn, stmt, rs);
         }
+        return booklist;
     }
 
     public boolean clearBook(){
