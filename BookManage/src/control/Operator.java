@@ -130,7 +130,7 @@ public class Operator {
             stmt = conn.createStatement();
             String sql;
             if (id != -1){
-                sql = "select id,bookname,author,price from book"+" where id='"+id;
+                sql = "select id,bookname,author,price from book"+" where id="+id;
             }
             else if (bookname != null){
                 sql = "select id,bookname,author,price from book"+" where bookname='"+bookname+"'";

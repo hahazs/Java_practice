@@ -26,7 +26,7 @@ public class MainClass {
             printMenu();
             //读取用户输入
             int choice = scanner.nextInt();
-            if (choice == 5) {
+            if (choice == 6) {
                 /*io.save();*/
                 System.out.println("Exit Successfully");
                 /*System.exit(0);*/
@@ -65,7 +65,8 @@ public class MainClass {
         System.out.println("deleteBook...2");
         System.out.println("changeBook...3");
         System.out.println("findBook.....4");
-        System.out.println("Exit.........5");
+        System.out.println("clearBook....5");
+        System.out.println("Exit.........6");
     }
 
     void clearBook(){
@@ -176,7 +177,7 @@ public class MainClass {
                     System.out.println("输入非法");
                 }
             } else if (choice_del == 3) {
-                printMenu();
+                /*printMenu();*/
                 break;
             } else {
                 System.out.println("输入非法");
@@ -253,7 +254,7 @@ public class MainClass {
                     System.out.println("输入错误");
                 }
             } else if (choice_change == 3) {
-                printMenu();
+                /*printMenu();*/
                 break;
             } else {
                 System.out.println("输入非法");
@@ -328,7 +329,7 @@ public class MainClass {
             else if (find_choice == 5){
                 System.out.println("请输入您要查找的书的价格的最低价：");
                 minprice = scanner.nextFloat();
-                System.out.println("请输入您要查找的书的价格的最低价：");
+                System.out.println("请输入您要查找的书的价格的最高价：");
                 maxprice = scanner.nextFloat();
                 if (maxprice >-1){
                     operator.findBook(id,name,author,dimname,minprice,maxprice);
@@ -338,7 +339,7 @@ public class MainClass {
                 }
             }
             else if (find_choice == 6){
-                printMenu();
+                /*printMenu();*/
                 break;
             }
             else {

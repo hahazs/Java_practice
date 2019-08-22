@@ -3,14 +3,14 @@ package jdbc;
 import java.sql.*;
 
 public class database {
-    private static final String URL = "jdbc:mysql://localhost:3306/books";
+    private static final String URL = "jdbc:mysql://localhost:3306/books?useUnicode=true&characterEncoding=UTF-8&userSSL=false&serverTimezone=GMT%2B8";
     private static final String NAME = "root";
-    private static final String PASSWORD="root";
+    private static final String PASSWORD="ZS950617";
     private static Connection conn = null;
     static {
         try {
             //1.加载驱动程序
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             //2.获得数据库的链接
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
