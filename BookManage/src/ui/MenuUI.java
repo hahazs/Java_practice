@@ -40,6 +40,8 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddUI addUI = new AddUI();
+                addUI.setVisible(true);
+                MenuUI.this.dispose();
             }
         });
         addButton.setBounds(110,25,123,29);
@@ -50,6 +52,8 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DeleteUI deleteUI = new DeleteUI();
+                deleteUI.setVisible(true);
+                MenuUI.this.dispose();
             }
         });
         deleteButton.setBounds(110,56,123,29);

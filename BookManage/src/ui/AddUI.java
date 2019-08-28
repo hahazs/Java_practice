@@ -47,7 +47,7 @@ public class AddUI extends JFrame {
         label_1.setBounds(15,50,81,21);
         contentPane.add(label_1);
 
-        JLabel label_2 = new JLabel();
+        JLabel label_2 = new JLabel("作者：");
         label_2.setBounds(15,95,81,21);
         contentPane.add(label_2);
 
@@ -83,10 +83,34 @@ public class AddUI extends JFrame {
                     boolean isSuccess = operator.addBook(name,author,price);
                     if(isSuccess){
                         Success success = new Success(choice);
-
+                        success.setVisible(true);
+                        AddUI.this.dispose();
                     }
+                    else {
+                        ErrorUI error = new ErrorUI();
+                        error.setVisible(true);
+                        AddUI.this.dispose();
+                    }
+                }catch (Exception e){
+                    ErrorUI error = new ErrorUI();
+                    error.setVisible(true);
+                    AddUI.this.dispose();
                 }
             }
         });
+        button.setBounds(268,182,123,29);
+        contentPane.add(button);
+
+        JButton button1 = new JButton("\u8FD4\u56DE");
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                MenuUI menu = new MenuUI();
+                menu.setVisible(true);
+                AddUI.this.dispose();
+            }
+        });
+        button1.setBounds(37,182,123,29);
+        contentPane.add(button1);
     }
 }
