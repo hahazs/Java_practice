@@ -62,8 +62,10 @@ public class MenuUI extends JFrame {
         JButton button_1 = new JButton("修改图书");
         button_1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent arg0) {
                 ChangeUI changeUI = new ChangeUI();
+                changeUI.setVisible(true);
+                MenuUI.this.dispose();
             }
         });
         button_1.setBounds(110,90,123,29);
