@@ -74,8 +74,10 @@ public class MenuUI extends JFrame {
         JButton button_2 = new JButton("查询图书");
         button_2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent arg0) {
                 FindmenuUI findmenuUI = new FindmenuUI();
+                findmenuUI.setVisible(true);
+                MenuUI.this.dispose();
             }
         });
         button_2.setBounds(110,124,123,29);
@@ -86,6 +88,8 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ClearUI clearUI = new ClearUI();
+                clearUI.setVisible(true);
+                MenuUI.this.dispose();
             }
         });
         button_3.setBounds(110,157,123,29);
